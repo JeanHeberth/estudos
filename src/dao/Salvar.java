@@ -7,7 +7,7 @@ public class Salvar {
 	public static void main(String[] args) {
 		
 		Usuario usuario = new Usuario();
-		usuario.setNome("João Victor");
+		usuario.setNome("Luiz Augusto");
 		
 		UsuarioDao  userDao = new UsuarioDao();
 		try {

@@ -11,16 +11,24 @@
 </h:head>
 <h:body>
 
-	<h:form id="msg">
-			
-			<p:growl id="growl" life="2000" />
-						
-		<p:commandButton value="Cadastrar" id="ajax" update="growl" />
+	<h:form id="formPessoa">
 
+		<h1>Olá seja bem vindo</h1>
+
+
+	Nome:
+	<h:inputText id="campoNome" value="#{usuarioBean2.nome}" />
+
+		<h:commandButton value="Listar Usuários" action="#{usuarioBean2.listarUsuarios}" />
+
+		<h:dataTable value="#{usuarioBean2.nomes}" var="nome">
+			<h:column>
+				<h:outputText value="#{nome}" />
+			</h:column>
+		</h:dataTable>
 
 
 
 	</h:form>
-
 </h:body>
 </html>

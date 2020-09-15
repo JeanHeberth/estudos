@@ -21,4 +21,11 @@ public class Usuario {
 		this.nome = nome;
 	}
 
+	@Override
+	public String toString() {
+
+		String saida = codigo + " - " + nome;
+		return saida;
+	}
+
 }
