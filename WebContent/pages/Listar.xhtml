@@ -16,17 +16,17 @@
 		<h1>Olá seja bem vindo</h1>
 
 
-	Nome:
-	<h:inputText id="campoNome" value="#{usuarioBean2.nome}" />
 
-		<h:commandButton value="Listar Usuários" action="#{usuarioBean2.listarUsuarios}" />
+		<p:outputLabel value="Clique aqui para listar usuários" />
+
+		<h:commandButton value="Listar Usuários"
+			action="#{usuarioBean2.listarUsuarios}" />
 
 		<h:dataTable value="#{usuarioBean2.nomes}" var="nome">
 			<h:column>
 				<h:outputText value="#{nome}" />
 			</h:column>
 		</h:dataTable>
-
 
 
 	</h:form>
