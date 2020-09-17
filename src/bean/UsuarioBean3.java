@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.swing.JOptionPane;
 
 import br.com.drogaria.util.JSFUtil;
 import dao.UsuarioDao;
@@ -17,8 +19,9 @@ public class UsuarioBean3 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Usuario usuario;
-	private ArrayList<Usuario> usuarios;
+	private Usuario usuario = new Usuario();
+	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private ArrayList<Usuario> listarUsuarios;
 
 	public ArrayList<Usuario> getUsuarios() {
 		return usuarios;
@@ -29,7 +32,7 @@ public class UsuarioBean3 implements Serializable {
 	}
 
 	public Usuario getUsuario() {
-		
+
 		return usuario;
 	}
 
@@ -37,20 +40,45 @@ public class UsuarioBean3 implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public ArrayList<Usuario> getListausuarios() {
+		return listarUsuarios;
+	}
+
+	public void setListausuarios(ArrayList<Usuario> listausuarios) {
+		this.listarUsuarios = listausuarios;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/* Método para listar usuários no banco de dados */
+	@PostConstruct
+	public void listar() {
+		try {
+			UsuarioDao userDao = new UsuarioDao();
+			listarUsuarios = userDao.listar();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/* Método para salvar usuários no banco de dados */
 	public void salvar() throws SQLException {
 
 		try {
-			Usuario usuario = new Usuario();
+
+			this.usuarios.add(usuario);
 			UsuarioDao userdao = new UsuarioDao();
 			userdao.salvar(usuario);
-			System.out.println("Fabricante salvo com sucesso.");
+			listarUsuarios = userdao.listar();
+			this.usuario = new Usuario();
+			JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso.");
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-			}
-
 		}
 
 	}
 
-
+}
