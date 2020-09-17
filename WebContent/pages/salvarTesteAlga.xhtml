@@ -7,8 +7,8 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Insert title here</title> cvcv
-	
+	<title>Teste Alga</title>
+
 </h:head>
 <h:body>
 
@@ -17,12 +17,21 @@
 
 
 	<h:form id="frmUserNovo">
-		<h:panelGrid id="pnlFabNovo" columns="2">
-			<p:outputLabel value="Nome " />
-			<p:inputText size="30" maxlength="50" value="#{MBUsuario3.usuario.nome}"/>
 
-			<p:commandButton value="Gravar" action="#{MBUsuario3.salvar}"/>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Nome:" />
+			<h:panelGroup>
+				<h:inputText id="nomeUsuario" value="#{BeanAlga.usuario.nome}" />
+				<h:message for="nomeUsuario" showSummary="true" showDetail="false" />
+			</h:panelGroup>
+			
+			<h:commandButton value="Cadastrar" action="#{BeanAlga.salvar}" />
+
+
 		</h:panelGrid>
+
+
+
 
 	</h:form>
 </h:body>

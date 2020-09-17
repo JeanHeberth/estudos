@@ -29,6 +29,7 @@ public class UsuarioBean3 implements Serializable {
 	}
 
 	public Usuario getUsuario() {
+		
 		return usuario;
 	}
 
@@ -36,20 +37,20 @@ public class UsuarioBean3 implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public void salvar() {
+	public void salvar() throws SQLException {
 
 		try {
 			Usuario usuario = new Usuario();
 			UsuarioDao userdao = new UsuarioDao();
 			userdao.salvar(usuario);
-			usuarios = userdao.listar();
-			JSFUtil.adicionarMessagemDeSucesso("Fabricante salvo com sucesso.");
+			System.out.println("Fabricante salvo com sucesso.");
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
-			JSFUtil.adicionarMensagemDeErro(ex.getMessage());
+			}
+
 		}
 
 	}
 
-}
+
