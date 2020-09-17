@@ -73,7 +73,7 @@ public class UsuarioBean3 implements Serializable {
 			userdao.salvar(usuario);
 			listarUsuarios = userdao.listar();
 			this.usuario = new Usuario();
-			JOptionPane.showMessageDialog(null, "Usuário salvo com sucesso.");
+			System.out.println("Usuário salvo com sucesso.");
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();

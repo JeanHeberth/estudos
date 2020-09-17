@@ -19,9 +19,15 @@
 	<h:form id="frmUserNovo">
 		<h:panelGrid id="pnlFabNovo" columns="2">
 			<h:outputLabel value="Nome " />
-			<h:inputText size="30" maxlength="50"
-				value="#{MBUsuario3.usuario.nome}" />
+			
+			
+			<!-- Nesse input text esqueci de colocar o Bean, por isso estava retornando null
+				 ele não pegava nada que era escrito e como no banco o campo nome é not null
+				 ele gerava o erro -->
+			<h:inputText size="30" maxlength="50" value="#{MBUsuario3.usuario.nome}" />
 
+			
+			
 			<h:commandButton value="Gravar" action="#{MBUsuario3.salvar}" />
 			<h:commandButton value="Listar usuarios do banco"
 				action="#{usuarioBean2.listarUsuarios}" />
