@@ -15,7 +15,7 @@ import domain.Usuario;
 
 @ManagedBean(name = "MBUsuario3")
 @RequestScoped
-public class UsuarioBean3 implements Serializable {
+public class BeanPesquisar implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

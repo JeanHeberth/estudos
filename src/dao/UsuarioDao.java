@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 
-import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import domain.Usuario;
 import factory.Conexao;
@@ -34,9 +34,9 @@ public class UsuarioDao {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select codigo,nome from usuario order by codigo asc");
 
-		Connection conxao = Conexao.conectar();
+		Connection conexao = Conexao.conectar();
 
-		PreparedStatement comandoPrepare = conxao.prepareStatement(sql.toString());
+		PreparedStatement comandoPrepare = conexao.prepareStatement(sql.toString());
 		ResultSet resultado = comandoPrepare.executeQuery();
 		ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
 
@@ -48,6 +48,28 @@ public class UsuarioDao {
 			listaUsuario.add(user);
 		}
 		return listaUsuario;
+
+	}
+
+	public ArrayList<Usuario> buscarPorDescricao() throws SQLException {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("select codigo, nome from usuario where nome like ? order by nome asc ");
+
+		Connection conexao = Conexao.conectar();
+
+		PreparedStatement comandoPrepare = conexao.prepareStatement(sql.toString());
+		ResultSet resultado = comandoPrepare.executeQuery();
+
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+
+		while (resultado.next()) {
+			Usuario itemUsuario = new Usuario();
+			itemUsuario.setNome("nome");
+
+			lista.add(itemUsuario);
+		}
+		return lista;
 
 	}
 
