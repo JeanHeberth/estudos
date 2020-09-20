@@ -51,22 +51,24 @@ public class UsuarioDao {
 
 	}
 
-	public ArrayList<Usuario> buscarPorDescricao() throws SQLException {
+	public ArrayList<Usuario> buscarPorDescricao(Usuario user) throws SQLException {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("select codigo, nome from usuario where nome like ? order by nome asc ");
 
 		Connection conexao = Conexao.conectar();
-
 		PreparedStatement comandoPrepare = conexao.prepareStatement(sql.toString());
+		comandoPrepare.setString(1, "%" + user.getNome() + "%");
+
 		ResultSet resultado = comandoPrepare.executeQuery();
 
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 
 		while (resultado.next()) {
 			Usuario itemUsuario = new Usuario();
-			itemUsuario.setNome("nome");
-
+			itemUsuario.setCodigo(resultado.getLong("codigo"));
+			itemUsuario.setNome(resultado.getString("nome"));
+			
 			lista.add(itemUsuario);
 		}
 		return lista;
